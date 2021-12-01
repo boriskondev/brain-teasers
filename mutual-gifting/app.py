@@ -5,7 +5,7 @@ import smtplib
 import pandas
 import docx
 
-password = input("Email password: ")
+password = input("Email pass: ")
 email_sender = "emails.tasting@gmail.com"
 email_in_cc = "emails.tasting@gmail.com"
 
