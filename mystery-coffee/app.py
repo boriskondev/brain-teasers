@@ -11,7 +11,7 @@ import os
 # ---------------------------------------------------------------------------------------
 
 mystery_coffee_db_file = "mystery_coffee_db.json"
-current_month_db_file = "db.xlsx"
+current_month_db_file = input("Name and extension of emails file:\n")
 
 current_month_records = pd.read_excel(current_month_db_file, sheet_name=0, skiprows=None)
 current_month_emails = current_month_records["Email"].tolist()
@@ -75,3 +75,4 @@ json_object = json.dumps(mystery_coffee_db, sort_keys=True, indent=4)
 
 with open("mystery_coffee_db.json", "w") as outfile:
     outfile.write(json_object)
+
