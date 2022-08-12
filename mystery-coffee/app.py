@@ -14,8 +14,15 @@ current_month_db_file = input("Name and extension of emails file: ").strip()
 current_month_records = pd.read_excel(current_month_db_file, sheet_name=0, skiprows=None)
 current_month_emails = current_month_records["Email"].tolist()
 
+additional_email = "filipa.veselinska@doitwise.com"
+
 if len(current_month_emails) % 2 != 0:
-    current_month_emails.append("filipa.veselinska@doitwise.com")
+    if additional_email not in current_month_emails:
+        current_month_emails.append(additional_email)
+    else:
+        print(f"Email {additional_email} already exists in the DB and the emails are {len(current_month_emails)}.")
+        print("Think what should be done and come back again.")
+        exit()
 
 current_month_emails = [email.lower() for email in current_month_emails]
 
