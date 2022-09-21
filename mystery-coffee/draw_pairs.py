@@ -4,10 +4,6 @@ import random
 import json
 import os
 
-# ---------------------------------------------------------------------------------------
-# Try emails sending via company email, if not - via Gmail
-# ---------------------------------------------------------------------------------------
-
 mystery_coffee_db_file = "mystery_coffee_db.json"
 current_month_db_file = input("Name and extension of emails file: ").strip()
 
