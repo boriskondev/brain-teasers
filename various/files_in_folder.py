@@ -2,7 +2,7 @@
 import os
 
 # This is my path
-path = "C://Users//boris.kondev//OneDrive - Do IT Wise Bulgaria//Desktop//Docs//Misc//_TBD//Навсякъде, където те няма"
+path = ""
 
 # to store files in a list
 list = []

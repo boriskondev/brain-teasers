@@ -1,10 +1,30 @@
+# Last updated on 13 May 2023
+# NOTES:
+# The current file is renamed copy of draw_pairs.py
+# The below code works when the db is moved into a separate folder called "data" and by
+# following these commands (only the db file is saved in the folder where the .exe is):
+# pip install pyinstaller
+# python.exe -m pip install --upgrade pip
+# pyinstaller --onefile --add-data "data;data" main_exe_tests.py
+
 from datetime import date
 import pandas as pd
 import random
 import json
 import os
 
-mystery_coffee_db_file = "mystery_coffee_db.json"
+# ---------- Updates start here ----------
+# print(os.path.dirname(__file__))
+data_folder = os.path.join(os.path.dirname(__file__), "data")
+# print(data_folder)
+db_file = "db.json"
+db_path = os.path.join(data_folder, db_file)
+# print(db_path)
+# ---------- Updates end here ----------
+
+# with open(db_path, "r") as f:
+#     mystery_coffee_db_file = json.load(f)
+
 current_month_db_file = input("Name and extension of emails file: ").strip()
 
 current_month_records = pd.read_excel(current_month_db_file, sheet_name=0, skiprows=None)
@@ -27,11 +47,19 @@ current_month = "0" + current_month if len(current_month) == 1 else current_mont
 
 current_month_pairs_file = f"mystery coffee pairs_{current_month}_{current_year}.txt"
 
-if os.path.exists(mystery_coffee_db_file):
-    with open(mystery_coffee_db_file) as f:
+# if os.path.exists(mystery_coffee_db_file):
+#     with open(mystery_coffee_db_file) as f:
+#         mystery_coffee_db = json.load(f)
+# else:
+#     mystery_coffee_db = {}
+
+# ---------- Updates start here ----------
+try:
+    with open(db_path) as f:
         mystery_coffee_db = json.load(f)
-else:
+except FileNotFoundError:
     mystery_coffee_db = {}
+# ---------- Updates end here ----------
 
 pairs = []
 
@@ -70,5 +98,8 @@ with open(current_month_pairs_file, "a+") as file:
 
 json_object = json.dumps(mystery_coffee_db, sort_keys=True, indent=4)
 
-with open("mystery_coffee_db.json", "w") as outfile:
+# ---------- Updates start here ----------
+with open(db_file, "w") as outfile:
     outfile.write(json_object)
+# ---------- Updates end here ----------
+
